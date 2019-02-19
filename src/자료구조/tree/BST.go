@@ -36,11 +36,36 @@ func (node *TreeNode) maximum() *TreeNode {
 	return node
 }
 
+func (node *TreeNode) insert(input int) {
+
+	var y *TreeNode
+	y = nil
+	x := node
+
+	fmt.Println(x)
+	for x != nil {
+		y = x
+		if input < x.data {
+			x = x.left
+		} else {
+			x = x.right
+		}
+	}
+
+	if y == nil {
+		node = &TreeNode{data: input, left: nil, right: nil}
+	} else if input < y.data {
+		y.left = &TreeNode{data: input, left: nil, right: nil}
+	} else {
+		y.right = &TreeNode{data: input, left: nil, right: nil}
+	}
+}
+
 func main() {
 
-	var root TreeNode
+	var root *TreeNode
 
-	root = TreeNode{data: 15, left: nil, right: nil}
+	root = &TreeNode{data: 15, left: nil, right: nil}
 
 	root.left = &TreeNode{data: 6, left: nil, right: nil}
 	root.right = &TreeNode{data: 18, left: nil, right: nil}
@@ -66,4 +91,8 @@ func main() {
 	fmt.Println(max)
 
 	fmt.Println(root)
+
+	root.insert(14)
+
+	fmt.Println(root.left.right.right.right)
 }
