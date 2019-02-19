@@ -19,6 +19,23 @@ func (node *TreeNode) search(key int) *TreeNode {
 
 }
 
+func (node *TreeNode) minimum() *TreeNode {
+
+	for node.left != nil {
+		node = node.left
+	}
+
+	return node
+}
+func (node *TreeNode) maximum() *TreeNode {
+
+	for node.right != nil {
+		node = node.right
+	}
+
+	return node
+}
+
 func main() {
 
 	var root TreeNode
@@ -41,6 +58,12 @@ func main() {
 	root.right.right = &TreeNode{data: 20, left: nil, right: nil}
 
 	result := root.search(13)
+	minimum := root.minimum()
+	max := root.maximum()
 
 	fmt.Println(result)
+	fmt.Println(minimum)
+	fmt.Println(max)
+
+	fmt.Println(root)
 }
